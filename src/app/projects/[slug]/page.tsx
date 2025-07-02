@@ -1,3 +1,4 @@
+import PageTitle from "@/components/page-title";
 import { getProjectBySlug } from "@/sanity/projects";
 
 export default async function SingleProjectPage({
@@ -8,10 +9,12 @@ export default async function SingleProjectPage({
   const project = await getProjectBySlug(slug);
 
   return (
-    <div>
-      <h3>{project.title}</h3>
-      <p>{project.description}</p>
-      <div className="grid grid-cols-3">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="col-span-1">
+        <PageTitle title={project.title} />
+        <p>{project.description}</p>
+      </div>
+      <div className=" col-span-2 grid grid-cols-3 gap-4">
         {project.media.map((m, i) => (
           <img src={m.asset.url} key={`image=${i}`} />
         ))}
