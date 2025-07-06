@@ -1,13 +1,11 @@
 import PageTitle from "@/components/page-title";
 import { getProjectBySlug } from "@/sanity/projects";
 import { SanityImageAssetDocument } from "next-sanity";
+import { PageProps } from "../../../../.next/types/app/projects/[slug]/page";
 
-export default async function SingleProjectPage({
-  params: { slug },
-}: {
-  params: { slug: string };
-}) {
-  const project = await getProjectBySlug(slug);
+export default async function SingleProjectPage(props: PageProps) {
+  const id = await props.params;
+  const project = await getProjectBySlug(id.slug);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
