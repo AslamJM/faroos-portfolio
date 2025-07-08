@@ -5,18 +5,23 @@ import React from "react";
 import { Card, CardContent } from "./ui/card";
 import { ArrowRight, Calendar, MapPin, Square } from "lucide-react";
 import { Badge } from "./ui/badge";
+import { urlFor } from "@/sanity/client";
 
 type Props = {
-  project: any;
+  project: SanityDocument;
 };
 
 export default function ProjectCard({ project }: Props) {
   return (
-    <Link key={project.id} href={`/project/${project.slug}`} className="group">
+    <Link
+      key={project._id}
+      href={`/projects/${project.slug.current}`}
+      className="group"
+    >
       <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-[1.02]">
         <div className="relative h-64 overflow-hidden">
           <Image
-            src={project.image || "/placeholder.svg"}
+            src={project.image}
             alt={project.title}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -81,13 +86,13 @@ export default function ProjectCard({ project }: Props) {
             </div>
           </div>
 
-          <div className="mt-4 flex flex-wrap gap-1">
+          {/* <div className="mt-4 flex flex-wrap gap-1">
             {project.tags.slice(0, 3).map((tag: string) => (
               <Badge key={tag} variant="secondary" className="text-xs">
                 {tag}
               </Badge>
             ))}
-          </div>
+          </div> */}
         </CardContent>
       </Card>
     </Link>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Users, Building, Calendar } from "lucide-react";
+import Link from "next/link";
 
 const stats = [
   {
@@ -21,7 +22,7 @@ const stats = [
   },
   {
     icon: Calendar,
-    value: "15+",
+    value: "6+",
     label: "Years Experience",
   },
 ];
@@ -84,10 +85,10 @@ export default function AboutHome() {
             <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow duration-300">
               <CardContent className="p-8 space-y-6">
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  For over 15 years, we've been at the forefront of
-                  architectural innovation, transforming visions into reality
-                  through thoughtful design and meticulous execution. Our team
-                  of award-winning architects combines creativity with technical
+                  For over 6 years, we've been at the forefront of architectural
+                  innovation, transforming visions into reality through
+                  thoughtful design and meticulous execution. Our team of
+                  talented architects combines creativity with technical
                   expertise to deliver exceptional results.
                 </p>
 
@@ -126,9 +127,7 @@ export default function AboutHome() {
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0" />
                     <div>
-                      <h4 className="font-semibold text-gray-900">
-                        Award-Winning
-                      </h4>
+                      <h4 className="font-semibold text-gray-900">Talented</h4>
                       <p className="text-sm text-gray-600">
                         Recognized excellence in design
                       </p>
@@ -171,19 +170,23 @@ export default function AboutHome() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button
-                size="lg"
-                className="bg-black text-white hover:bg-gray-800 px-8"
-              >
-                View Our Portfolio
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 bg-transparent"
-              >
-                Meet Our Team
-              </Button>
+              <Link href="/portfolio" passHref>
+                <Button
+                  size="lg"
+                  className="bg-black text-white hover:bg-gray-800 px-8 cursor-pointer"
+                >
+                  View Our Portfolio
+                </Button>
+              </Link>
+              <Link href="/about" passHref>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 bg-transparent cursor-pointer"
+                >
+                  Meet Our Team
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

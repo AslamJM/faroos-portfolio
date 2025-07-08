@@ -1,7 +1,10 @@
 import { allProjects } from "@/data/projects";
 import ProjectCard from "../project-card";
+import { getProjects } from "@/sanity/projects";
 
-export default function AllProjects() {
+export default async function AllProjects() {
+  const projects = await getProjects();
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,8 +12,8 @@ export default function AllProjects() {
           Featured Projects
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allProjects.map((p) => (
-            <ProjectCard key={p.id} project={p} />
+          {projects.map((p) => (
+            <ProjectCard key={p._id} project={p} />
           ))}
         </div>
       </div>

@@ -1,4 +1,4 @@
-export const portfolioCategories = ["All", "Residential", "Commercial", "Cultural", "Mixed-Use", "Public", "Hospitality"]
+export const portfolioCategories = ["All", "Interior Design", "Landscape", "Architecture"]
 
 export const portfolioImages = [
     {

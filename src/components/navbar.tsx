@@ -74,7 +74,7 @@ export default function Navbar({ variant = "solid", className }: NavbarProps) {
                 shouldShowBackground ? "text-gray-900" : "text-white"
               )}
             >
-              ARCHITECT
+              FDS
             </span>
           </Link>
 
