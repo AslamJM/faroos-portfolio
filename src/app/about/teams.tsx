@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { teamMembers } from "@/data/team";
-import { Linkedin, Mail, Twitter } from "lucide-react";
+import { getTeamMembers } from "@/sanity/team";
 import Image from "next/image";
 import React from "react";
 
-export default function Teams() {
+export default async function Teams() {
+  const teamMembers = await getTeamMembers();
+
   return (
     <section className="py-16 lg:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,7 +23,7 @@ export default function Teams() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member) => (
             <Card
-              key={member.id}
+              key={member._id}
               className="bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden"
             >
               <div className="relative h-80 overflow-hidden">
@@ -35,33 +35,6 @@ export default function Teams() {
                   quality={90}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                {/* Social Links Overlay */}
-                <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="flex space-x-2">
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      className="h-8 w-8 bg-white/20 text-white backdrop-blur-sm hover:bg-white/30"
-                    >
-                      <Mail className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      className="h-8 w-8 bg-white/20 text-white backdrop-blur-sm hover:bg-white/30"
-                    >
-                      <Linkedin className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      className="h-8 w-8 bg-white/20 text-white backdrop-blur-sm hover:bg-white/30"
-                    >
-                      <Twitter className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
               </div>
 
               <CardContent className="p-6 space-y-4">
