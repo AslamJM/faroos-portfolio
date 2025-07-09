@@ -23,6 +23,7 @@ const SINGLE_PROJECT_QUERY = `*[_type == "project" && slug.current == $slug][0] 
     title,
     client,
     "image":image.asset->url,
+    "gallery":media[].asset->url,
     category,
     description,
     area,
