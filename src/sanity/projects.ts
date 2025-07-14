@@ -13,6 +13,18 @@ const PROJECTS_QUERY = `*[_type == "project"] | order(_createdAt desc) {
     location,
 }`;
 
+const FEATURED_PROJECTS_QUERY = `*[_type == "project" && featured == true]  {
+    _id,
+    title,
+    slug,
+    "image":image.asset->url,
+    category,
+    description,
+    area,
+    year,
+    location,
+}`;
+
 export async function getProjects() {
   const projects = await client.fetch<SanityDocument[]>(PROJECTS_QUERY);
   return projects;
@@ -50,3 +62,8 @@ export async function getPortfolioImages() {
   return projects
 }
 
+
+export async function getFeaturedProjects() {
+  const featuredProjects = await client.fetch<SanityDocument[]>(FEATURED_PROJECTS_QUERY);
+  return featuredProjects;
+}

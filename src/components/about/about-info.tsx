@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
+import { fetchAboutContent } from "@/sanity/team";
 
 const achievements = [
   { number: "200+", label: "Projects Completed" },
@@ -9,7 +10,11 @@ const achievements = [
   { number: "150+", label: "Happy Clients" },
 ];
 
-export default function AboutInfo() {
+export default async function AboutInfo() {
+  const info = await fetchAboutContent();
+
+  console.log(info);
+
   return (
     <section className="py-16 lg:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,36 +26,14 @@ export default function AboutInfo() {
                 About Our Studio
               </div>
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
-                Designing the{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600">
-                  Future of Architecture
-                </span>
+                {info.title}
               </h1>
             </div>
 
             <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-              <p>
-                Founded in 2008, our architectural studio has been at the
-                forefront of innovative design, creating spaces that inspire,
-                function beautifully, and stand the test of time. We believe
-                that great architecture goes beyond aesthetics—it shapes
-                experiences, tells stories, and enhances the way people live and
-                work.
-              </p>
-              <p>
-                Our multidisciplinary team combines creative vision with
-                technical expertise, sustainable practices, and a deep
-                understanding of our clients' needs. From residential
-                masterpieces to commercial landmarks, every project reflects our
-                commitment to excellence and innovation.
-              </p>
-              <p>
-                We're not just architects; we're storytellers, problem-solvers,
-                and visionaries who transform ideas into reality. Our
-                award-winning designs have been recognized internationally, but
-                our greatest achievement is the satisfaction of our clients and
-                the positive impact our buildings have on communities.
-              </p>
+              {info.paragraphs.map((par: string, i: number) => (
+                <p key={`par-${i}`}>{par}</p>
+              ))}
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">

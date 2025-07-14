@@ -1,14 +1,18 @@
 "use client";
 
-import { heroSlides } from "@/data/hero";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../navbar";
+import { SanityDocument } from "next-sanity";
 
-export default function HeroSlider() {
+type Props = {
+  heroSlides: SanityDocument[];
+};
+
+export default function HeroSlider({ heroSlides }: Props) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -47,7 +51,7 @@ export default function HeroSlider() {
       <div className="absolute inset-0">
         {heroSlides.map((slide, index) => (
           <div
-            key={slide.id}
+            key={slide._id}
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
               index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
@@ -81,7 +85,7 @@ export default function HeroSlider() {
                 {heroSlides[currentSlide].subtitle}
               </h2>
               <p className="mb-8 max-w-2xl text-lg text-white/80 sm:text-xl">
-                {heroSlides[currentSlide].description}
+                {heroSlides[currentSlide].text}
               </p>
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link href="/projects" passHref>

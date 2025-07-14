@@ -3,91 +3,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, MapPin, Calendar } from "lucide-react";
+import { getFeaturedProjects } from "@/sanity/projects";
 
-const portfolioProjects = [
-  {
-    id: 1,
-    slug: "modern-residential-complex",
-    title: "Modern Residential Complex",
-    category: "Residential",
-    location: "New York, NY",
-    year: "2023",
-    image: "/hero1.jpg",
-    featured: true,
-  },
-  {
-    id: 2,
-    slug: "sustainable-office-tower",
-    title: "Sustainable Office Tower",
-    category: "Commercial",
-    location: "San Francisco, CA",
-    year: "2023",
-    image: "/hero2.jpg",
-    featured: false,
-  },
-  {
-    id: 3,
-    slug: "cultural-arts-center",
-    title: "Cultural Arts Center",
-    category: "Cultural",
-    location: "Chicago, IL",
-    year: "2022",
-    image: "/hero3.jpg",
-    featured: true,
-  },
-  {
-    id: 4,
-    slug: "luxury-villa-estate",
-    title: "Luxury Villa Estate",
-    category: "Residential",
-    location: "Miami, FL",
-    year: "2022",
-    image: "/hero4.jpg",
-    featured: false,
-  },
-  //   {
-  //     id: 5,
-  //     slug: "urban-mixed-use-development",
-  //     title: "Urban Mixed-Use Development",
-  //     category: "Mixed-Use",
-  //     location: "Seattle, WA",
-  //     year: "2023",
-  //     image: "/placeholder.svg?height=500&width=600",
-  //     featured: true,
-  //   },
-  //   {
-  //     id: 6,
-  //     slug: "minimalist-house-design",
-  //     title: "Minimalist House Design",
-  //     category: "Residential",
-  //     location: "Los Angeles, CA",
-  //     year: "2021",
-  //     image: "/placeholder.svg?height=400&width=400",
-  //     featured: false,
-  //   },
-  //   {
-  //     id: 7,
-  //     slug: "corporate-headquarters",
-  //     title: "Corporate Headquarters",
-  //     category: "Commercial",
-  //     location: "Austin, TX",
-  //     year: "2022",
-  //     image: "/placeholder.svg?height=600&width=400",
-  //     featured: false,
-  //   },
-  //   {
-  //     id: 8,
-  //     slug: "eco-friendly-community-center",
-  //     title: "Eco-Friendly Community Center",
-  //     category: "Public",
-  //     location: "Portland, OR",
-  //     year: "2023",
-  //     image: "/placeholder.svg?height=500&width=500",
-  //     featured: true,
-  //   },
-];
+export default async function PortfolioGallery() {
+  const portfolioProjects = await getFeaturedProjects();
 
-export default function PortfolioGallery() {
   return (
     <section className="py-16 lg:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -113,8 +33,8 @@ export default function PortfolioGallery() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
           {portfolioProjects.map((project, index) => (
             <Link
-              key={project.id}
-              href={`/project/${project.slug}`}
+              key={project._id}
+              href={`/project/${project.slug.current}`}
               className={`group block ${
                 // Create varied grid layout
                 index === 0

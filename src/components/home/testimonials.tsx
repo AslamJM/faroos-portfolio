@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
+import { SanityDocument } from "next-sanity";
 
 const testimonials = [
   {
@@ -81,7 +82,11 @@ const testimonials = [
   },
 ];
 
-export default function TestimonialsSection() {
+type Props = {
+  testimonials: SanityDocument[];
+};
+
+export default function TestimonialsSection({ testimonials }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -153,7 +158,7 @@ export default function TestimonialsSection() {
           <div className="hidden lg:grid lg:grid-cols-3 gap-8 mb-12">
             {getCurrentTestimonials().map((testimonial) => (
               <Card
-                key={testimonial.id}
+                key={testimonial._id}
                 className="bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 group"
               >
                 <CardContent className="p-8">
@@ -163,9 +168,7 @@ export default function TestimonialsSection() {
                   </div>
 
                   {/* Rating */}
-                  <div className="flex items-center mb-4">
-                    {renderStars(testimonial.rating)}
-                  </div>
+                  <div className="flex items-center mb-4">{renderStars(5)}</div>
 
                   {/* Review Text */}
                   <p className="text-gray-700 leading-relaxed mb-6 line-clamp-4">
@@ -176,7 +179,7 @@ export default function TestimonialsSection() {
                   <div className="flex items-center space-x-4">
                     <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
                       <Image
-                        src={testimonial.avatar || "/placeholder.svg"}
+                        src={testimonial.image || "/placeholder.svg"}
                         alt={testimonial.name}
                         fill
                         className="object-cover"
@@ -206,7 +209,7 @@ export default function TestimonialsSection() {
                 .slice(currentIndex, currentIndex + 1)
                 .map((testimonial) => (
                   <Card
-                    key={testimonial.id}
+                    key={testimonial._id}
                     className="bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
                   >
                     <CardContent className="p-6">
@@ -217,7 +220,7 @@ export default function TestimonialsSection() {
 
                       {/* Rating */}
                       <div className="flex items-center mb-4">
-                        {renderStars(testimonial.rating)}
+                        {renderStars(5)}
                       </div>
 
                       {/* Review Text */}
@@ -229,7 +232,7 @@ export default function TestimonialsSection() {
                       <div className="flex items-center space-x-4">
                         <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
                           <Image
-                            src={testimonial.avatar || "/placeholder.svg"}
+                            src={testimonial.image || "/placeholder.svg"}
                             alt={testimonial.name}
                             fill
                             className="object-cover"
@@ -240,7 +243,7 @@ export default function TestimonialsSection() {
                             {testimonial.name}
                           </h4>
                           <p className="text-sm text-gray-600">
-                            {testimonial.title}, {testimonial.company}
+                            {testimonial.position}
                           </p>
                           <p className="text-xs text-gray-500">
                             {testimonial.project}
