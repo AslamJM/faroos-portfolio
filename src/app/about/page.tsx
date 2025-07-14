@@ -2,7 +2,7 @@ import AboutInfo from "@/components/about/about-info";
 import Navbar from "@/components/navbar";
 import Teams from "./teams";
 
-const options = { next: { revalidate: 30 } };
+export const revalidate = 60;
 
 export default function Page() {
   return (

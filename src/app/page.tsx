@@ -4,7 +4,7 @@ import PortfolioGallery from "@/components/home/home-portfolio";
 import TestimonialsSection from "@/components/home/testimonials";
 import { getHeroSlides, getTestimonials } from "@/sanity/team";
 
-const options = { next: { revalidate: 30 } };
+export const revalidate = 60;
 
 export default async function Home() {
   const heroSlides = await getHeroSlides();
