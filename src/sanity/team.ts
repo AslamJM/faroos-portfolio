@@ -38,6 +38,13 @@ const HERO_SLIDES = `*[_type == "homeSlider"] | order(_createdAt asc) {
     "image":image.asset->url
 }`
 
+const CONTACT_DETAILS = `*[_type == "contacts"]| order(_createdAt desc){
+    _id,
+    type,
+    value,
+    description
+}`
+
 export async function getTeamMembers() {
     const teamMembers = await client.fetch<SanityDocument[]>(TEAM_QUERY);
     return teamMembers;
@@ -54,4 +61,8 @@ export async function getTestimonials() {
 
 export async function getHeroSlides() {
     return await client.fetch<SanityDocument[]>(HERO_SLIDES);
+}
+
+export async function getContactDetails() {
+    return await client.fetch<SanityDocument[]>(CONTACT_DETAILS)
 }

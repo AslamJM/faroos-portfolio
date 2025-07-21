@@ -1,10 +1,16 @@
 "use client";
 
-import { contactMethods } from "@/data/contact";
+import { Mail, MessageCircle, Phone } from "lucide-react";
 import React from "react";
 import { Card, CardContent } from "../ui/card";
 
-export default function ContactMethods() {
+export default function ContactMethods({ methods }: { methods: any[] }) {
+  const contactMethods = methods.map((m) => ({
+    ...m,
+    icon:
+      m.type === "Phone" ? Phone : m.type === "Email" ? Mail : MessageCircle,
+  }));
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,12 +24,12 @@ export default function ContactMethods() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {contactMethods.map((method, index) => (
             <Card
               key={index}
               className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
-              onClick={() => window.open(method.action, "_blank")}
+              //onClick={() => window.open(method.action, "_blank")}
             >
               <CardContent className="p-6 text-center">
                 <div
