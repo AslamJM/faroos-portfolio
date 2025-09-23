@@ -5,11 +5,17 @@ import React from "react";
 import { Card, CardContent } from "../ui/card";
 
 export default function ContactMethods({ methods }: { methods: any[] }) {
-  const contactMethods = methods.map((m) => ({
-    ...m,
-    icon:
-      m.type === "Phone" ? Phone : m.type === "Email" ? Mail : MessageCircle,
-  }));
+  const contactMethods = methods
+    .map((m) => ({
+      ...m,
+      icon:
+        m.title === "Phone"
+          ? Phone
+          : m.title === "Email"
+          ? Mail
+          : MessageCircle,
+    }))
+    .reverse();
 
   return (
     <section className="py-16 bg-gray-50">

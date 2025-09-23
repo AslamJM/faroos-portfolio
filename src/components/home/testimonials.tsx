@@ -242,9 +242,6 @@ export default function TestimonialsSection({ testimonials }: Props) {
                           <h4 className="font-semibold text-gray-900">
                             {testimonial.name}
                           </h4>
-                          <p className="text-sm text-gray-600">
-                            {testimonial.position}
-                          </p>
                           <p className="text-xs text-gray-500">
                             {testimonial.project}
                           </p>
